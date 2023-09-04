@@ -1,0 +1,162 @@
+{
+  "consumer": {
+    "name": "transacciones_consumer"
+  },
+  "interactions": [
+    {
+      "description": "a request for transacciones",
+      "key": "13710edc",
+      "pending": false,
+      "providerStates": [
+        {
+          "name": "there are no transacciones"
+        }
+      ],
+      "request": {
+        "method": "GET",
+        "path": "/transacciones"
+      },
+      "response": {
+        "body": {
+          "content": [
+
+          ],
+          "contentType": "application/json",
+          "encoded": false
+        },
+        "headers": {
+          "Content-Type": [
+            "application/json"
+          ]
+        },
+        "status": 200
+      },
+      "type": "Synchronous/HTTP"
+    },
+    {
+      "description": "a request for transacciones",
+      "key": "4c03d0ad",
+      "pending": false,
+      "providerStates": [
+        {
+          "name": "there are transacciones"
+        }
+      ],
+      "request": {
+        "method": "GET",
+        "path": "/transacciones"
+      },
+      "response": {
+        "body": {
+          "content": [
+            {
+              "id": 1234567890,
+              "items": [
+                {
+                  "code": "string",
+                  "descripcion": "string",
+                  "monto": 100
+                }
+              ]
+            }
+          ],
+          "contentType": "application/json",
+          "encoded": false
+        },
+        "generators": {
+          "body": {
+            "$[*].id": {
+              "max": 2147483647,
+              "min": 0,
+              "type": "RandomInt"
+            },
+            "$[*].items[*].code": {
+              "size": 20,
+              "type": "RandomString"
+            },
+            "$[*].items[*].descripcion": {
+              "size": 20,
+              "type": "RandomString"
+            },
+            "$[*].items[*].monto": {
+              "max": 2147483647,
+              "min": 0,
+              "type": "RandomInt"
+            }
+          }
+        },
+        "headers": {
+          "Content-Type": [
+            "application/json"
+          ]
+        },
+        "matchingRules": {
+          "body": {
+            "$": {
+              "combine": "AND",
+              "matchers": [
+                {
+                  "match": "type",
+                  "min": 1
+                }
+              ]
+            },
+            "$[*].id": {
+              "combine": "AND",
+              "matchers": [
+                {
+                  "match": "type"
+                }
+              ]
+            },
+            "$[*].items": {
+              "combine": "AND",
+              "matchers": [
+                {
+                  "match": "type"
+                }
+              ]
+            },
+            "$[*].items[*].code": {
+              "combine": "AND",
+              "matchers": [
+                {
+                  "match": "type"
+                }
+              ]
+            },
+            "$[*].items[*].descripcion": {
+              "combine": "AND",
+              "matchers": [
+                {
+                  "match": "type"
+                }
+              ]
+            },
+            "$[*].items[*].monto": {
+              "combine": "AND",
+              "matchers": [
+                {
+                  "match": "number"
+                }
+              ]
+            }
+          }
+        },
+        "status": 200
+      },
+      "type": "Synchronous/HTTP"
+    }
+  ],
+  "metadata": {
+    "pact-jvm": {
+      "version": "4.3.7"
+    },
+    "pactSpecification": {
+      "version": "4.0"
+    }
+  },
+  "provider": {
+    "name": "transacciones_provider"
+  }
+}

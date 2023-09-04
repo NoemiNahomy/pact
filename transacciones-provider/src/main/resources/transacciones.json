@@ -1,0 +1,12 @@
+[
+  {
+    "id": 1234567890,
+    "items": [
+      {
+        "code": "string",
+        "descripcion": "string",
+        "monto": 100
+      }
+    ]
+  }
+]
